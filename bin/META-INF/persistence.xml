@@ -1,0 +1,29 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="meeting">
+        <description>
+            Hibernate using JPA
+        </description>
+        <jta-data-source>java:/OracleXeDS</jta-data-source>
+        <class>org.terash.meeting.entity.Meeting</class>
+        <class>org.terash.meeting.entity.MeetingForm</class>
+        <class>org.terash.meeting.entity.MeetingGroup</class>
+        <class>org.terash.meeting.entity.MeetingGroupMember</class>
+        <class>org.terash.meeting.entity.MeetingMember</class>
+        <class>org.terash.meeting.entity.MeetingType</class>
+        <class>org.terash.meeting.entity.Member</class>
+        <class>org.terash.meeting.entity.MemberType</class>
+        <class>org.terash.meeting.entity.Minutes</class>
+        
+        
+        <properties>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014/02/17 1:32:42 by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="org.terash.meeting.entity.MeetingGroupMember" table="MEETING_GROUP_MEMBER" schema="MEETING">
+        <id name="rid" type="big_decimal">
+            <column name="RID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="member" class="org.terash.meeting.entity.Member" fetch="select">
+            <column name="MEMBER_RID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="meetingGroup" class="org.terash.meeting.entity.MeetingGroup" fetch="select">
+            <column name="MEETING_GROUP_RID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="available" type="boolean">
+            <column name="AVAILABLE" precision="1" scale="0" not-null="true" />
+        </property>
+        <property name="createDate" type="date">
+            <column name="CREATE_DATE" length="7" not-null="true" />
+        </property>
+        <property name="createUser" type="string">
+            <column name="CREATE_USER" length="20" not-null="true" />
+        </property>
+        <property name="updateDate" type="date">
+            <column name="UPDATE_DATE" length="7" not-null="true" />
+        </property>
+        <property name="updateUser" type="string">
+            <column name="UPDATE_USER" length="20" not-null="true" />
+        </property>
+        <property name="comments" type="string">
+            <column name="COMMENTS" length="128" />
+        </property>
+    </class>
+</hibernate-mapping>
