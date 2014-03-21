@@ -8,15 +8,15 @@
             Hibernate using JPA
         </description>
         <jta-data-source>java:/OracleXeDS</jta-data-source>
-        <class>org.terash.meeting.entity.Meeting</class>
-        <class>org.terash.meeting.entity.MeetingForm</class>
-        <class>org.terash.meeting.entity.MeetingGroup</class>
-        <class>org.terash.meeting.entity.MeetingGroupMember</class>
-        <class>org.terash.meeting.entity.MeetingMember</class>
-        <class>org.terash.meeting.entity.MeetingType</class>
-        <class>org.terash.meeting.entity.Member</class>
-        <class>org.terash.meeting.entity.MemberType</class>
-        <class>org.terash.meeting.entity.Minutes</class>
+        <class>org.example.minutes.entity.Meeting</class>
+        <class>org.example.minutes.entity.MeetingForm</class>
+        <class>org.example.minutes.entity.MeetingGroup</class>
+        <class>org.example.minutes.entity.MeetingGroupMember</class>
+        <class>org.example.minutes.entity.MeetingMember</class>
+        <class>org.example.minutes.entity.MeetingType</class>
+        <class>org.example.minutes.entity.Member</class>
+        <class>org.example.minutes.entity.MemberType</class>
+        <class>org.example.minutes.entity.Minutes</class>
         
         
         <properties>
