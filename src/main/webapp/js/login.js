@@ -1,6 +1,6 @@
-var minutesControllers = angular.module('minutesControllers', []);
-minutesControllers.controller('LoginControl', ['$scope', '$http', '$filter',
-    function($scope, $http, $filter){
+var minutesControllers = angular.module('minutesControllers');
+minutesControllers.controller('LoginControl', ['$scope', '$http', '$filter', '$location', 
+    function($scope, $http, $filter, $location){
         $scope.doLogin = function() {
             var loginDto = {};
             loginDto.loginId = $scope.loginId;
@@ -14,7 +14,7 @@ minutesControllers.controller('LoginControl', ['$scope', '$http', '$filter',
             	headers: { 'Content-Type': 'application/json; charset=UTF-8' },
             	data: parameter
             }).success(function(data, status, headers, config) {
-            	alert(data);
+            	$location.path('/meeting')
             }).error(function(data, status, headers, config) {
             	alert('login failed');
             });
@@ -23,22 +23,3 @@ minutesControllers.controller('LoginControl', ['$scope', '$http', '$filter',
         }
     }
 ]);
-
-var minutesApp = angular.module('minutesApp', ['minutesControllers']);
-
-/*minutesApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/meeting', {
-        templateUrl: 'html/meeting-list.html',
-        controller: 'MeetingListCtrl'
-      }).
-      when('/meeting/:rid', {
-        templateUrl: 'html/meeting-detail.html',
-        controller: 'MeetingDetailCtrl'
-      }).
-      otherwise({
-        redirectTo: 'html/login.html'
-      });
-  }]);
-*/
