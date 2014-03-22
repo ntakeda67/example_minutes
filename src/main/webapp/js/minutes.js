@@ -1,5 +1,12 @@
 var minutesControllers = angular.module('minutesControllers', []);
-var minutesApp = angular.module('minutesApp', ['ngRoute', 'minutesControllers']);
+var minutesServices = angular.module('minutesServices', ['ngResource']);
+var minutesApp = angular.module('minutesApp', [
+                                               'ngRoute',
+                                               'minutesControllers',
+                                               'minutesServices']);
+minutesServices.run(function($http){
+	$http.defaults.headers.post = {'Content-Type': 'application/json; charset=UTF-8'};
+});
 
 minutesApp.config(['$routeProvider',
   function($routeProvider) {
@@ -10,7 +17,7 @@ minutesApp.config(['$routeProvider',
       }).
       when('/meeting', {
         templateUrl: 'meeting-list.html',
-        controller: 'MeetingListCtrl'
+        controller: 'MeetingListControl'
       }).
       when('/meeting/:rid', {
         templateUrl: 'meeting-detail.html',
@@ -20,3 +27,11 @@ minutesApp.config(['$routeProvider',
         redirectTo: '/login'
       });
   }]);
+
+minutesServices.factory('Meeting', ['$resource', '$http', 
+    function($resource){
+		return $resource('../rest/meetings', {}, {
+			query: {method:'POST', isArray:true}
+	});
+}
+])
