@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+  <datasource jndi-name="MinutesDS" enabled="true" use-java-context="true" pool-name="mintues">
+    <connection-url>jdbc:oracle:thin:@192.168.211.176:1521:xe</connection-url>
+    <driver>oracle-driver</driver>
+    <!-- 
+    <driver-class>oracle.jdbc.driver.OracleDrive</driver-class>
+     -->
+    <security>
+        <user-name>minutes</user-name>
+        <password>minutes</password>
+    </security>
+    <validation>
+      <background-validation>true</background-validation>
+      <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker"></valid-connection-checker>
+      <stale-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker"></stale-connection-checker>
+      <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleExceptionSorter"></exception-sorter>
+    </validation>
+  </datasource>
+</datasources>

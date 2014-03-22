@@ -3,11 +3,14 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="meeting">
+    <persistence-unit name="meeting" transaction-type="JTA">
         <description>
             Hibernate using JPA
         </description>
         <jta-data-source>java:/OracleXeDS</jta-data-source>
+        <!-- 
+        <jta-data-source>java:MinutesDS</jta-data-source>
+         -->
         <class>org.example.minutes.entity.Meeting</class>
         <class>org.example.minutes.entity.MeetingForm</class>
         <class>org.example.minutes.entity.MeetingGroup</class>
@@ -20,6 +23,7 @@
         
         
         <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
         </properties>
