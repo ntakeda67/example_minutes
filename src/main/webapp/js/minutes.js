@@ -34,4 +34,12 @@ minutesServices.factory('Meeting', ['$resource', '$http',
 			query: {method:'POST', isArray:true}
 	});
 }
-])
+]);
+
+minutesServices.factory('MeetingType', ['$resource', '$http', 
+    function($resource){
+		return $resource('../rest/meetingTypes', {}, {
+			query: {method:'POST', isArray:true}
+	});
+}
+]);

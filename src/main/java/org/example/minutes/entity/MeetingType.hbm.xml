@@ -32,13 +32,13 @@
         <property name="comments" type="string">
             <column name="COMMENTS" length="128" />
         </property>
-        <set name="meetingMembers" table="MEETING_MEMBER" inverse="true" lazy="true" fetch="select">
+        <set name="meetingMembers" table="MEETING_MEMBER" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MEMBER_TYPE_RID" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="org.example.minutes.entity.MeetingMember" />
         </set>
-        <set name="meetingForms" table="MEETING_FORM" inverse="true" lazy="true" fetch="select">
+        <set name="meetingForms" table="MEETING_FORM" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MEETING_TYPE_RID" precision="22" scale="0" not-null="true" />
             </key>
