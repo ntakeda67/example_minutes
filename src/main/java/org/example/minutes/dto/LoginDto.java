@@ -2,7 +2,6 @@ package org.example.minutes.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement(name = "loginDto")
 public class LoginDto {
@@ -10,7 +9,6 @@ public class LoginDto {
 	private String loginId;
 	private String password;
 	
-	@JsonProperty("loginId")
 	public String getLoginId() {
 		return loginId;
 	}
@@ -18,7 +16,6 @@ public class LoginDto {
 		this.loginId = loginId;
 	}
 	
-	@JsonProperty("password")
 	public String getPassword() {
 		return password;
 	}

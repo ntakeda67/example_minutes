@@ -21,8 +21,6 @@
         <class>org.example.minutes.entity.Member</class>
         <class>org.example.minutes.entity.MemberType</class>
         <class>org.example.minutes.entity.Minutes</class>
-
-
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
             <property name="hibernate.show_sql" value="true" />

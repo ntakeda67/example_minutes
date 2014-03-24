@@ -1,0 +1,49 @@
+<form novalidate name="meetingForm">
+<div>
+    <label for="meetingList">会議一覧</label>
+    <ul id="meetingList">
+        <li ng-repeat="meeting in meetings"><span ng-click="doEdit(meeting)">編集</a>{{meeting.topic}}</li>
+    </ul>
+</div>
+<div>
+    <input type="hidden" id="rid" value="{{edittedMeeting.rid}}">
+    <ol>
+        <li>
+           <label for="purpose" >会議目的: </label><input type="text" name="purpose" maxlength="100" value="{{edittedMeeting.purpose}}" required>
+        </li>
+        <li>
+            <label for="meetingTypeList">会議形式:</label>
+            <ul id="meetingTypeList">
+               <li ng-repeat="meetingType in meetingTypes"><label for="meetingType{{meetingType.rid}}">{{meetingType.name}}</label><input type="radio" name="meetingTypeRaidoGroup" id="meetingType{{meetingType.rid}}" ng-model="MeetingType"></li>
+            </ul>
+        </li>
+        <li>
+            <label for="startDate">開始日時:</label>
+            <input type="datetime-local" id="startDate" value="{{edittedMeeting.startDate}}">
+        </li>
+        <li>
+            <label for="endDate">終了日時:</label>
+            <input type="datetime-local" id="endDate" value="{{edittedMeeting.endDate}}">
+        </li>
+        <li>
+            <label for="place">場所:</label>
+            <input type="text" id="place" maxlength="100" value="{{edittedMeeting.place}}">
+        </li>
+        <li>
+            <label for="topic">議題:</label>
+            <input type="text" id="topic" value="{{edittedMeeting.topic}}">
+        </li>
+        <li>
+            <label for="goal">ゴール:</label>
+            <input type="text" id="goal" value="{{edittedMeeting.goal}}">
+        </li>
+        <li>
+            <label for="prepation">事前準備:</label>
+            <input type="text" id="preparation" value="{{edittedMeeting.preparation}}">
+        </li>
+    </ol>
+    <button ng-click="doRegister()">新規登録</button>
+    <button ng-click="doUpdate()">更新</button>
+</div>
+</form>
+

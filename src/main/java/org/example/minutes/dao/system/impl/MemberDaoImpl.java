@@ -1,7 +1,5 @@
 package org.example.minutes.dao.system.impl;
 
-import java.math.BigDecimal;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,13 +8,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.example.minutes.dao.MeetingDao;
+import org.example.minutes.dao.DaoBase;
 import org.example.minutes.dao.system.MemberDao;
 import org.example.minutes.entity.Member;
 
 @Stateless
 @LocalBean
-public class MemberDaoImpl extends MeetingDao implements MemberDao  {
+public class MemberDaoImpl extends DaoBase implements MemberDao  {
 
 	@PersistenceContext(unitName = "meeting")
 	private EntityManager em;
