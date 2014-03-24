@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2014/02/17 1:32:42 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="org.terash.meeting.entity.MemberType" table="MEMBER_TYPE" schema="MEETING">
+    <class name="org.example.minutes.entity.MemberType" table="MEMBER_TYPE" schema="MINUTES">
         <id name="rid" type="big_decimal">
             <column name="RID" precision="22" scale="0" />
             <generator class="assigned" />

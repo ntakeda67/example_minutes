@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2014/02/17 1:32:42 by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="org.terash.meeting.entity.Meeting" table="MEETING" schema="MEETING">
+    <class name="org.example.minutes.entity.Meeting" table="MEETING" schema="MINUTES">
         <id name="rid" type="big_decimal">
             <column name="RID" precision="22" scale="0" />
             <generator class="assigned" />
@@ -59,23 +59,23 @@
         <property name="comments" type="string">
             <column name="COMMENTS" length="128" />
         </property>
-        <set name="minuteses" table="MINUTES" inverse="true" lazy="true" fetch="select">
+        <set name="minuteses" table="MINUTES" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MEETING_RID" precision="22" scale="0" not-null="true" />
             </key>
-            <one-to-many class="org.terash.meeting.entity.Minutes" />
+            <one-to-many class="org.example.minutes.entity.Minutes" />
         </set>
-        <set name="meetingMembers" table="MEETING_MEMBER" inverse="true" lazy="true" fetch="select">
+        <set name="meetingMembers" table="MEETING_MEMBER" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MEETING_RID" precision="22" scale="0" not-null="true" />
             </key>
-            <one-to-many class="org.terash.meeting.entity.MeetingMember" />
+            <one-to-many class="org.example.minutes.entity.MeetingMember" />
         </set>
-        <set name="meetingForms" table="MEETING_FORM" inverse="true" lazy="true" fetch="select">
+        <set name="meetingForms" table="MEETING_FORM" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="MEETING_RID" precision="22" scale="0" not-null="true" />
             </key>
-            <one-to-many class="org.terash.meeting.entity.MeetingForm" />
+            <one-to-many class="org.example.minutes.entity.MeetingForm" />
         </set>
     </class>
 </hibernate-mapping>
