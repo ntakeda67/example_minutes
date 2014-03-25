@@ -13,8 +13,20 @@
         <link rel="stylesheet" type="text/css" href="../css/minutes.css">
     </head>
     <body>
-        <div class="view-container">
-            <div ng-view class="view-frame"></div>
+        <div class="body-area shadow">
+            <div id="header-area">
+                <div class="header">
+                    <span class="header-title">開催通知/議事録管理システム</span>
+                </div>
+            </div>
+
+            <div class="view-container">
+                <div ng-view class="view-frame"></div>
+            </div>
+
+            <div id="footer-area">
+                <div class="footer"></div>
+            </div>
         </div>
     </body>
 </html>

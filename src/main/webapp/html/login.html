@@ -1,9 +1,9 @@
-<form novalidate name="loginForm">
-    <div class="noparagraph">ログイン : <input type="text" name="loginId" ng-model="loginId" required></div>
-    <div ng-show="loginForm.loginId.$error.required" class="noparagraph">*</div>
-    <br />
-    <div class="noparagraph">パスワード : <input type="password" name="password" ng-model="password" required></div>
-    <div ng-show="loginForm.password.$error.required" class="noparagraph">*</div>
-    <button ng-click="doLogin()">Login</button>
+<form novalidate name="loginForm" class="login-form">
+    <div class="login-title">ログイン</div>
+    <div class="noparagraph login-form-label">ログインID : <input type="text" name="loginId" class="login-form-field" ng-model="loginId" required></div>
+    <div ng-show="loginForm.loginId.$error.required" class="noparagraph"></div>
+    <br/>
+    <div class="noparagraph login-form-label">パスワード : <input type="password" name="password" class="login-form-field" ng-model="password" required></div>
+    <div ng-show="loginForm.password.$error.required" class="noparagraph"></div>
+    <div class="login-button"><button class="button-size-small" ng-click="doLogin()">ログイン</button></div>
 </form>
-

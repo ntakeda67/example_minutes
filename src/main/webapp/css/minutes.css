@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/********************************************/
+/********             ã§í            ********/
+/********************************************/
+body {
+    background-color: #E0F4BA;
+    font-size: 80%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+h1 {
+    color: #555555;
+    font-size: 32px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+h2 {
+    border-bottom: 2px solid #748BD4;
+    border-left: 12px solid #748BD4;
+    color: #555555;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-top: 32px;
+    padding-left: 6px;
+    width: 500px;
+}
+.shadow {
+    box-shadow: 0 1px 3px #5E5E5E;
+}
+.header {
+    background-color: #2A5F7D;
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+    padding-left: 20px;
+    padding-top: 7px;
+}
+.logout-button {
+    margin-left: 605px;
+    margin-top: -2px;
+    position: absolute;
+}
+.body-area {
+    background-color: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+.body-area .logout-button {
+    margin-left: 340px;
+    margin-top: -2px;
+    position: absolute;
+}
+.main {
+    float: left;
+    margin-bottom: 10px;
+}
+.footer {
+    background-color: #2A5F7D;
+    clear: both;
+    height: 13px;
+    text-align: center;
+}
+.button-size-small {
+    font-size: 13px;
+    height: 25px;
+    width: 80px;
+}
+.button-size-middle {
+    font-size: 13px;
+    height: 25px;
+    width: 100px;
+}
+.button-size-large {
+    font-size: 13px;
+    height: 25px;
+    width: 140px;
+}
+
+
+
+/****************************************************/
+/********             ÉçÉOÉCÉìâÊñ            ********/
+/****************************************************/
+.login-form {
+    background: none repeat scroll 0 0 #EBF4FB;
+    border-top: 1px solid #EBF4FB;
+    margin: 40px auto;
+    padding: 20px;
+    width: 260px;
+}
+.login-title {
+    color: #555555;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 20px;
+}
+.login-form-label {
+    display: block;
+    font-weight: bold;
+}
+.login-form-field {
+    height: 20px;
+    margin-bottom: 15px;
+    width: 255px;
+}
+.login-button {
+    margin: 20px 0 20px 180px;
+}
