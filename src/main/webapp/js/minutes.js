@@ -12,15 +12,15 @@ minutesApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/login', {
-        templateUrl: 'login.html',
+        templateUrl: '/minutes/html/login.html',
         controller: 'LoginControl'
       }).
       when('/meeting', {
-        templateUrl: 'meeting-list.html',
+        templateUrl: '/minutes/html/meeting-list.html',
         controller: 'MeetingListControl'
       }).
       when('/meeting/:rid', {
-        templateUrl: 'meeting-detail.html',
+        templateUrl: '/minutes/html/meeting-detail.html',
         controller: 'MeetingDetailCtrl'
       }).
       otherwise({
