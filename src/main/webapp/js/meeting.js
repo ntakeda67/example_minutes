@@ -8,6 +8,10 @@ minutesControllers.controller('MeetingListControl', ['$scope', '$http', 'Meeting
 		$scope.doEdit = function(target){
 			$scope.edittedMeeting = angular.copy(target);
 		}
+		
+		$scope.updateList = function(){
+			$scope.meetings = Meeting.query();
+		}
 	}
 ]);
 
@@ -20,7 +24,9 @@ minutesControllers.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeti
 				data: $scope.edittedMeeting
 			}).success(function(data, status, headers, config){
 				$scope.edittedMeeting = {};
-				$scope.meetings = Meeting.query();
+				$scope.updateList();
+				//$scope.meetings = Meeting.query();
+				//console.log($scope.meetings);
 			})
 				
 			
