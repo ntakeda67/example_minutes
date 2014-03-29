@@ -15,7 +15,7 @@
         <li>
             <label for="meetingTypeList">会議形式:</label>
             <ul id="meetingTypeList">
-               <li ng-repeat="meetingType in meetingTypes"><label for="meetingType{{meetingType.rid}}">{{meetingType.name}}</label><input type="radio" name="meetingTypeRaidoGroup" id="meetingType{{meetingType.rid}}" ng-model="MeetingType"></li>
+               <li ng-repeat="meetingType in meetingTypes"><label for="meetingType{{meetingType.rid}}">{{meetingType.name}}</label><input type="radio" name="meetingTypeRaidoGroup" id="meetingType{{meetingType.rid}}" ng-model="edittedMeeting.meetingTypeRid" value="{{meetingType.rid}}"></li>
             </ul>
         </li>
         <li>

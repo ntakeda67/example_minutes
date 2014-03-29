@@ -16,6 +16,7 @@ public class MeetingDetailDto {
 	String modifyDate;
 	String cancelDate;
 	Long updateDate;
+	BigDecimal meetingTypeRid;
 	public BigDecimal getRid() {
 		return rid;
 	}
@@ -93,6 +94,12 @@ public class MeetingDetailDto {
 	}
 	public void setUpdateDate(Long updateDate) {
 		this.updateDate = updateDate;
+	}
+	public BigDecimal getMeetingTypeRid() {
+		return meetingTypeRid;
+	}
+	public void setMeetingTypeRid(BigDecimal meetingTypeRid) {
+		this.meetingTypeRid = meetingTypeRid;
 	}
 
 }

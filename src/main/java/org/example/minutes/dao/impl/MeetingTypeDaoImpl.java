@@ -1,5 +1,6 @@
 package org.example.minutes.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -28,6 +29,11 @@ public class MeetingTypeDaoImpl extends DaoBase implements MeetingTypeDao {
 		
 		em.clear();
 		return meetingList;
+	}
+
+	public MeetingType find(BigDecimal rid) {
+		EntityManager em = super.getEntityManager();
+		return em.find(MeetingType.class, rid);
 	}
 
 }

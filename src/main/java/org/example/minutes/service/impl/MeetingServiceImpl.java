@@ -12,8 +12,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import org.example.minutes.dao.MeetingDao;
+import org.example.minutes.dao.MeetingFormDao;
+import org.example.minutes.dao.MeetingTypeDao;
 import org.example.minutes.dto.MeetingDetailDto;
 import org.example.minutes.entity.Meeting;
+import org.example.minutes.entity.MeetingForm;
 import org.example.minutes.service.MeetingService;
 
 @Stateless
@@ -22,6 +25,12 @@ public class MeetingServiceImpl implements MeetingService {
 	
 	@EJB
 	private MeetingDao meetingDao;
+	
+	@EJB
+	private MeetingTypeDao meetingTypeDao;
+	
+	@EJB
+	private MeetingFormDao meetingFormDao;
 	
 	// FIXME Jacksonにやらせる
 	private static String datetimeFormat = "yyyy-MM-dd'T'HH:mm";
@@ -83,6 +92,19 @@ public class MeetingServiceImpl implements MeetingService {
 		entity.setCreateUser("TEST");
 		
 		meetingDao.insert(entity);
+		
+		MeetingForm form = new MeetingForm();
+		form.setMeeting(entity);
+		// FIXME
+		form.setMeetingType(meetingTypeDao.find(dto.getMeetingTypeRid()));
+		form.setRid(null);
+		form.setUpdateDate(transactionDate);
+		form.setCreateDate(transactionDate);
+		form.setAvailable(true);
+		form.setUpdateUser("TEST");
+		form.setCreateUser("TEST");
+		
+		meetingFormDao.insert(form);
 	}
 	
 	private Meeting convertToEntity(MeetingDetailDto dto){
