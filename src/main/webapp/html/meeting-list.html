@@ -1,13 +1,14 @@
 <form novalidate name="meetingForm">
 <div>
     <label for="meetingList">会議一覧</label>
-    <ul id="meetingList">
+    <ol id="meetingList">
         <li ng-repeat="meeting in meetings"><span ng-click="doEdit(meeting)">編集</a>{{meeting.topic}}</li>
-    </ul>
+    </ol>
 </div>
 <div ng-controller="ModifyMeetingControl">
     <input type="hidden" id="rid" ng-model="edittedMeeting.rid">
-    <ol>
+    <input type="hidden" id="updateDate" ng-model="edittedMeeting.updateDate">
+    <ul>
         <li>
            <label for="purpose" >会議目的: </label><input type="text" name="purpose" maxlength="100" ng-model="edittedMeeting.purpose" required>
         </li>
@@ -41,7 +42,7 @@
             <label for="prepation">事前準備:</label>
             <input type="text" id="preparation" ng-model="edittedMeeting.preparation">
         </li>
-    </ol>
+    </ul>
     <button ng-click="doRegister()">新規登録</button>
     <button ng-click="doUpdate()">更新</button>
 </div>

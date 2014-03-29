@@ -9,4 +9,8 @@ import org.example.minutes.entity.Meeting;
 @Local
 public interface MeetingDao {
 	List<Meeting> findAll();
+
+	Meeting find(Long rid);
+	
+	void insert(Meeting entity);
 }

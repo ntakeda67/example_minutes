@@ -1,6 +1,7 @@
 package org.example.minutes.service.impl;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +24,8 @@ public class MeetingServiceImpl implements MeetingService {
 	private MeetingDao meetingDao;
 	
 	// FIXME Jacksonにやらせる
-	private static DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+	private static String datetimeFormat = "yyyy-MM-dd'T'HH:mm";
+	private static DateFormat formatter = new SimpleDateFormat(datetimeFormat);
 
 	public List<MeetingDetailDto> findMeetingList() {
 		List<Meeting> meetingList = meetingDao.findAll();
@@ -34,12 +36,12 @@ public class MeetingServiceImpl implements MeetingService {
 		List<MeetingDetailDto> dtoList = new ArrayList<MeetingDetailDto>();
 		
 		for(Meeting entity : entityList){
-			dtoList.add(convertToMeetingEntity(entity));
+			dtoList.add(convertToDetailDto(entity));
 		}
 		return dtoList;
 	}
 	
-	public MeetingDetailDto convertToMeetingEntity(Meeting entity){
+	private MeetingDetailDto convertToDetailDto(Meeting entity){
 		MeetingDetailDto dto = new MeetingDetailDto();
 		
 		dto.setRid(entity.getRid());
@@ -61,13 +63,68 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 	
 	private String formatDate(Date date){
-		System.out.println(date);
 		if(date == null){
 			return "";
 		}
 		
 		return formatter.format(date);
 	}
+
+	public void registerMeeting(MeetingDetailDto dto) {
+		Date transactionDate = new Date();
+		
+		Meeting entity = convertToEntity(dto);
+		entity.setRid(null);
+		entity.setUpdateDate(transactionDate);
+		entity.setRegisterDate(transactionDate);
+		entity.setCreateDate(transactionDate);
+		entity.setAvailable(true);
+		entity.setUpdateUser("TEST");
+		entity.setCreateUser("TEST");
+		
+		meetingDao.insert(entity);
+	}
 	
+	private Meeting convertToEntity(MeetingDetailDto dto){
+		Meeting entity = new Meeting();
+		
+		Date startDate = parseDate(dto.getStartDate());
+		Date endDate = parseDate(dto.getEndDate());
+
+		entity.setRid(dto.getRid());
+		entity.setPurpose(dto.getPurpose());
+		entity.setPeriod(calcPeriod(startDate, endDate));
+		entity.setStartDate(startDate);
+		entity.setEndDate(endDate);
+		entity.setPlace(dto.getPlace());
+		entity.setTopic(dto.getTopic());
+		entity.setGoal(dto.getGoal());
+		entity.setPreparation(dto.getPreparation());
+		entity.setRegisterDate(parseDate(dto.getRegisterDate()));
+		entity.setModifyDate(parseDate(dto.getModifyDate()));
+		entity.setCancelDate(parseDate(dto.getCancelDate()));
+		
+		return entity;
+	}
+	
+	private Short calcPeriod(Date startDate, Date endDate){
+		if( (startDate == null) || (endDate == null)) {
+			return null;
+		}
+		Long period = ( endDate.getTime() - startDate.getTime() ) / 1000 / 60;
+		return period.shortValue();
+	}
+	
+	private Date parseDate(String dateString){
+		// FIXME StringUtilsかなんかが入ったら
+		if(dateString == null || "".equals(dateString)){
+			return null;
+		}
+		try {
+			return formatter.parse(dateString);
+		} catch(ParseException e){
+			throw new IllegalArgumentException("パース対象の日付文字列(" + dateString + ") のフォーマットが規定のフォーマット(" + datetimeFormat + ")に従っていません。");
+		}
+	}
 
 }

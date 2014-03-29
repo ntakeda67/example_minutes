@@ -30,4 +30,20 @@ public class MeetingDaoImpl extends DaoBase implements MeetingDao {
 		return meetingList;
 	}
 
+	public Meeting find(Long rid) {
+		EntityManager em = super.getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Meeting> query = builder.createQuery(Meeting.class);
+		Root<Meeting> m = query.from(Meeting.class);
+		query.select(m).where(builder.equal(m.get("rid"), rid));
+		
+		Meeting meeting = (Meeting)findByQuery(query);
+		em.clear();
+		return meeting;
+	}
+
+	public void insert(Meeting entity) {
+		super.insert(entity);
+	}
+
 }

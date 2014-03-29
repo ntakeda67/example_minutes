@@ -20,7 +20,7 @@ public class DaoBase {
 		Object o = null;
 
 		try {
-    	    o = em.createQuery(query).getSingleResult();
+			o = em.createQuery(query).getSingleResult();
 		} catch (NoResultException ne) {
 			return null;
 		}
@@ -39,5 +39,9 @@ public class DaoBase {
 	
 	protected EntityManager getEntityManager(){
 		return em;
+	}
+	
+	protected <T> void insert(T entity){
+		em.persist(entity);
 	}
 }
