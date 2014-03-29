@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import org.example.minutes.entity.Meeting;
+import org.example.minutes.dto.MeetingDetailDto;
 
 @Local
 public interface MeetingService {
-	List<Meeting> findMeetingList();
+	List<MeetingDetailDto> findMeetingList();
 }

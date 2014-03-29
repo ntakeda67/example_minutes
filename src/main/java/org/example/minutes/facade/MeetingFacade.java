@@ -9,7 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.example.minutes.entity.Meeting;
+import org.example.minutes.dto.MeetingDetailDto;
 import org.example.minutes.service.MeetingService;
 
 @Path("/meetings")
@@ -21,7 +21,7 @@ public class MeetingFacade {
 	@POST
 	@Consumes(MediaType.WILDCARD)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Meeting> inquireMeetings(){
+	public List<MeetingDetailDto> inquireMeetings(){
 		return meetingService.findMeetingList();
 	}
 }

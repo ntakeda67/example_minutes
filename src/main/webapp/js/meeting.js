@@ -18,3 +18,8 @@ minutesControllers.controller('MeetingListControl', ['$scope', '$http', 'Meeting
 		}
 	}
 ]);
+
+minutesControllers.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeting', 'MeetingType',
+	function ModifyMeetingControl($scope, $http, Meeting, MeetingType){
+		$scope.purpose = $scope.edittedMeeting.purpose;
+}]);
