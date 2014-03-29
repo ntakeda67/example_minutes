@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>議事録一覧</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="../../js/meeting/searchMeetingList.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/minutes.css">
+    </head>
+    <body>
+        <div id="container" ng-app="searchMeetingListApp">
+          <form novalidate name="searchMeetingForm">
+            <div ng-controller="searchMeetingControl">
+              <table>
+                <tr>
+                  <th>開催日時</th>
+                  <th>目的</th>
+                  <th>場所</th>
+                </th>
+                <tr ng-repeat="meeting in meetingList" ng-init="searchMeetingList()">
+                  <td><a href="" ng-click="editMeeting(meeting.rid)">{{ meeting.startDate }}</a></td>
+                  <td>{{ meeting.purpose }}</td>
+                  <td>{{ meeting.place }}</td>
+                </tr>
+              </table>
+            </div>
+          </form>
+        </div>
+    </body>
+</html>

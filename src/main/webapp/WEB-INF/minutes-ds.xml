@@ -5,9 +5,7 @@
     <connection-url>jdbc:oracle:thin:@localhost:1521:xe</connection-url>
 
     <driver>oracle-driver</driver>
-    <!--
-    <driver-class>oracle.jdbc.driver.OracleDrive</driver-class>
-     -->
+    <!-- <driver-class>oracle.jdbc.driver.OracleDrive</driver-class>  -->
     <security>
         <user-name>minutes</user-name>
         <password>minutes</password>
