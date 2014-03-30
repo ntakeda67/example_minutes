@@ -152,4 +152,9 @@ public class MeetingServiceImpl implements MeetingService {
 		}
 	}
 
+	public void modifyMeeting(MeetingDetailDto dto) {
+		Meeting entity = convertToEntity(dto);
+		
+	}
+
 }

@@ -49,10 +49,12 @@ meetingService.controller('MeetingListControl', ['$scope', '$http', 'Meeting', '
 meetingService.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeting', 'MeetingType','MeetingStateService',
 	function ModifyMeetingControl($scope, $http, Meeting, MeetingType, MeetingStateService){
 		$scope.doRegister = function(){
+			var editted = MeetingStateService.getEditted();
+			editted.rid = null;
 			$http({
 				method: 'PUT',
 				url: '../rest/meetings',
-				data: MeetingStateService.getEditted()
+				data: editted
 			}).success(function(data, status, headers, config){
 				MeetingStateService.setEditted({});
 				MeetingStateService.getList(true);
