@@ -3,7 +3,7 @@ meeting
 
 * Troubles
 ** Probelm 1. JBossWSが起動できない
-# ���� Windows7 64bit
+# OS: Windows7 64bit
 
 ```
 18:51:24,287 ERROR [org.jboss.as.controller.management-operation] (ServerService Thread Pool -- 46) JBAS014612: ���� ("add") �̎��s - �A�h���X: ([("subsystem" => "webservices")]) : java.lang.IllegalArgumentException: JBWS022117: Invalid address provided: <<�}�V���̃z�X�g��>>
@@ -32,7 +32,7 @@ standalone.xml
 
         <!-- extension module="org.jboss.as.webservices"/-->
 
-(����)
+(中略)
 
 <!--
         <subsystem xmlns="urn:jboss:domain:webservices:1.2">
@@ -49,3 +49,25 @@ standalone.xml
 -->
 
 ```
+
+* JPA
+** Entity定義
+1. UpdateDate / User などの共通で存在する属性は 基底Entityを用意したい
+***  EntityBaseにした
+2. MeetingFormは関連テーブルだけどMeeting・MeetingTypeに対して一つなので、SecondaryTableで一つのEntitytにするか、もしくはMeeting一つにまとめたい
+3. 議事録の中身はFetch.Lazyか
+4. 日付型に@Temporal
+5. Available系は @EnumTypeしたい
+*** booleanなのでいらない
+6. 必ず存在するようなクエリはNamedQueryに掘り込んでしまう？findAllとか
+7. Default Value(UpdateDateとかAvailableとか)
+*** PrePersist -> 基底クラスに書いても動かず
+*** DaoBaseに書く
+8. Metaフィールド
+9. ロックの仕方. @Versionを日付で使えない？
+10. どこまでがXMLでどこまでがアノテーション
+11. mappinig.xml が Hibernateだけど、JPA式にする？
+* JAX-RS
+1. Jacksonで日付フォーマットをカスタム 
+2. Enitty <-> Dtoのマッピングがうざい
+　 Entityを直に返しちゃだめか

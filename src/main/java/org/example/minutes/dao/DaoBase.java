@@ -55,14 +55,12 @@ public class DaoBase<T extends EntityBase> {
 		entity.setUpdateDate(new Date());
 		entity.setUpdateUser("TEST");
 		entity.setAvailable(true);
-		em.persist(entity);
-		
+		em.persist(entity);		
 	}
 	
 	protected void update(T entity){
 		entity.setUpdateDate(new Date());
-		entity.setUpdateUser("TEST");
-		// FIXME テストが必要
+		entity.setUpdateUser("TEST");	
 		if(em.contains(entity)){
 			em.merge(entity);
 		}
