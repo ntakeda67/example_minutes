@@ -52,10 +52,13 @@ public class MeetingServiceImpl implements MeetingService {
 	
 	private MeetingDetailDto convertToDetailDto(Meeting entity){
 		MeetingDetailDto dto = new MeetingDetailDto();
+		//MeetingForm form = meetingFormDao.find(entity.getRid());
 		
 		dto.setRid(entity.getRid());
 		dto.setPurpose(entity.getPurpose());
 		dto.setPeriod(Short.valueOf(entity.getPeriod()));
+		//FIXME 関連テーブルがSetででマークされてるのでややこしくなってる。 FKで存在が約束されてないと闇
+		dto.setMeetingTypeRid(((MeetingForm) entity.getMeetingForms().iterator().next()).getMeetingType().getRid());
 		// FIXME 
 		dto.setStartDate(formatDate(entity.getStartDate()));
 		dto.setEndDate(formatDate(entity.getEndDate()));
