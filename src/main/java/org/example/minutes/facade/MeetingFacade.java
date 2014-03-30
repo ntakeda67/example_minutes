@@ -32,8 +32,8 @@ public class MeetingFacade {
 	public void registgerMeeting(MeetingDetailDto dto){
 		if(dto.getRid() == null) {
 			meetingService.registerMeeting(dto);
+		} else {
+			meetingService.modifyMeeting(dto);
 		}
-		
-		meetingService.modifyMeeting(dto);
 	}
 }

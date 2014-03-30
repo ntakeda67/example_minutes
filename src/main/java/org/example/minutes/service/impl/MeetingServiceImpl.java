@@ -140,8 +140,33 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	public void modifyMeeting(MeetingDetailDto dto) {
-		Meeting entity = convertToEntity(dto);
+		Meeting previousEntity = meetingDao.find(dto.getRid());
 		
+		if(previousEntity == null || previousEntity.getUpdateDate().getTime() != dto.getUpdateDate().longValue()){
+			throw new RuntimeException("Meetingの更新時に排他エラー  rid:" + dto.getRid() );
+		}
+		mergeToEntity(dto, previousEntity);
+		
+		MeetingForm form = (MeetingForm) previousEntity.getMeetingForms().iterator().next();
+		form.setMeetingType(meetingTypeDao.find(dto.getMeetingTypeRid()));
+	}
+
+	private void mergeToEntity(MeetingDetailDto dto, Meeting entity){
+		
+		Date startDate = parseDate(dto.getStartDate());
+		Date endDate = parseDate(dto.getEndDate());
+
+		entity.setPurpose(dto.getPurpose());
+		entity.setPeriod(calcPeriod(startDate, endDate));
+		entity.setStartDate(startDate);
+		entity.setEndDate(endDate);
+		entity.setPlace(dto.getPlace());
+		entity.setTopic(dto.getTopic());
+		entity.setGoal(dto.getGoal());
+		entity.setPreparation(dto.getPreparation());
+		entity.setRegisterDate(parseDate(dto.getRegisterDate()));
+		entity.setModifyDate(parseDate(dto.getModifyDate()));
+		entity.setCancelDate(parseDate(dto.getCancelDate()));
 	}
 
 }

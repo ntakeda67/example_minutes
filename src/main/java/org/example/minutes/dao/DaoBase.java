@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,6 +18,8 @@ import org.example.minutes.entity.EntityBase;
 public class DaoBase<T extends EntityBase> {
 	@PersistenceContext(unitName = "meeting")
 	private EntityManager em;
+	
+	protected static final LockModeType lockMode = LockModeType.PESSIMISTIC_READ;
 
 	public Object findByQuery(CriteriaQuery<T> query) {
 
@@ -45,17 +48,26 @@ public class DaoBase<T extends EntityBase> {
 	}
 	
 	protected void insert(T entity){
-		// FIXME リクエスト受信時刻にする？
-		Date transactionDate = new Date();
-		
-		entity.setUpdateDate(transactionDate);
-		entity.setCreateDate(transactionDate);
-		entity.setAvailable(true);
-		// ログインユーザを持ってくる
-		entity.setUpdateUser("TEST");
+		// FIXME リクエスト受信時刻にするか、systimestamp にする。
+		// FIXME リクエストユーザを設定する・
+		entity.setCreateDate(new Date());
 		entity.setCreateUser("TEST");
-		
+		entity.setUpdateDate(new Date());
+		entity.setUpdateUser("TEST");
+		entity.setAvailable(true);
 		em.persist(entity);
 		
 	}
+	
+	protected void update(T entity){
+		entity.setUpdateDate(new Date());
+		entity.setUpdateUser("TEST");
+		// FIXME テストが必要
+		if(em.contains(entity)){
+			em.merge(entity);
+		}
+		
+		em.merge(entity);
+	}
+
 }

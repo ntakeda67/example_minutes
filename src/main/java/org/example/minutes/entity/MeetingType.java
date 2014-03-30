@@ -12,7 +12,6 @@ import java.util.Set;
  */
 public class MeetingType extends EntityBase implements java.io.Serializable {
 
-	private BigDecimal rid;
 	private String type;
 	private String name;
 	private Set meetingMembers = new HashSet(0);
@@ -24,10 +23,9 @@ public class MeetingType extends EntityBase implements java.io.Serializable {
 	public MeetingType(BigDecimal rid, String type, String name,
 			boolean available, Date createDate, String createUser,
 			Date updateDate, String updateUser) {
-		this.rid = rid;
 		this.type = type;
 		this.name = name;
-		setBaseColumnsValue(available, createDate, createUser,
+		setBaseColumnsValue(rid, available, createDate, createUser,
 				updateDate, updateUser);
 	}
 
@@ -35,23 +33,14 @@ public class MeetingType extends EntityBase implements java.io.Serializable {
 			boolean available, Date createDate, String createUser,
 			Date updateDate, String updateUser, String comments,
 			Set meetingMembers, Set meetingForms) {
-		this.rid = rid;
 		this.type = type;
 		this.name = name;
 		this.meetingMembers = meetingMembers;
 		this.meetingForms = meetingForms;
 		
-		setBaseColumnsValue(available, createDate, createUser,
+		setBaseColumnsValue(rid, available, createDate, createUser,
 				updateDate, updateUser, comments);
 		
-	}
-
-	public BigDecimal getRid() {
-		return this.rid;
-	}
-
-	public void setRid(BigDecimal rid) {
-		this.rid = rid;
 	}
 
 	public String getType() {
