@@ -12,7 +12,7 @@ import org.example.minutes.entity.MeetingForm;
 
 @Stateless
 @LocalBean
-public class MeetingFormDaoImpl extends DaoBase implements MeetingFormDao {
+public class MeetingFormDaoImpl extends DaoBase<MeetingForm> implements MeetingFormDao {
 
 	public void insert(MeetingForm entity) {
 		super.insert(entity);

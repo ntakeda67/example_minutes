@@ -30,6 +30,10 @@ public class MeetingFacade {
 	@Consumes(MediaType.WILDCARD)
 	@Produces(MediaType.APPLICATION_JSON)
 	public void registgerMeeting(MeetingDetailDto dto){
-		meetingService.registerMeeting(dto);
+		if(dto.getRid() == null) {
+			meetingService.registerMeeting(dto);
+		}
+		
+		meetingService.modifyMeeting(dto);
 	}
 }

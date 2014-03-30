@@ -1,5 +1,6 @@
 package org.example.minutes.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -9,13 +10,15 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.example.minutes.entity.EntityBase;
+
 @Stateless
 @LocalBean
-public class DaoBase {
+public class DaoBase<T extends EntityBase> {
 	@PersistenceContext(unitName = "meeting")
 	private EntityManager em;
 
-	public <T> Object findByQuery(CriteriaQuery<T> query) {
+	public Object findByQuery(CriteriaQuery<T> query) {
 
 		Object o = null;
 
@@ -41,7 +44,18 @@ public class DaoBase {
 		return em;
 	}
 	
-	protected <T> void insert(T entity){
+	protected void insert(T entity){
+		// FIXME リクエスト受信時刻にする？
+		Date transactionDate = new Date();
+		
+		entity.setUpdateDate(transactionDate);
+		entity.setCreateDate(transactionDate);
+		entity.setAvailable(true);
+		// ログインユーザを持ってくる
+		entity.setUpdateUser("TEST");
+		entity.setCreateUser("TEST");
+		
 		em.persist(entity);
+		
 	}
 }

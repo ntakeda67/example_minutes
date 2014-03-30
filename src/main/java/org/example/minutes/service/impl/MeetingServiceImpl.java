@@ -86,13 +86,7 @@ public class MeetingServiceImpl implements MeetingService {
 		Date transactionDate = new Date();
 		
 		Meeting entity = convertToEntity(dto);
-		entity.setRid(null);
-		entity.setUpdateDate(transactionDate);
 		entity.setRegisterDate(transactionDate);
-		entity.setCreateDate(transactionDate);
-		entity.setAvailable(true);
-		entity.setUpdateUser("TEST");
-		entity.setCreateUser("TEST");
 		
 		meetingDao.insert(entity);
 		
@@ -100,13 +94,6 @@ public class MeetingServiceImpl implements MeetingService {
 		form.setMeeting(entity);
 		// FIXME
 		form.setMeetingType(meetingTypeDao.find(dto.getMeetingTypeRid()));
-		form.setRid(null);
-		form.setUpdateDate(transactionDate);
-		form.setCreateDate(transactionDate);
-		form.setAvailable(true);
-		form.setUpdateUser("TEST");
-		form.setCreateUser("TEST");
-		
 		meetingFormDao.insert(form);
 	}
 	
@@ -150,6 +137,11 @@ public class MeetingServiceImpl implements MeetingService {
 		} catch(ParseException e){
 			throw new IllegalArgumentException("パース対象の日付文字列(" + dateString + ") のフォーマットが規定のフォーマット(" + datetimeFormat + ")に従っていません。");
 		}
+	}
+
+	public void modifyMeeting(MeetingDetailDto dto) {
+		Meeting entity = convertToEntity(dto);
+		
 	}
 
 }

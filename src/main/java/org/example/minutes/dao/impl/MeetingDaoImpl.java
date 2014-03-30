@@ -15,7 +15,7 @@ import org.example.minutes.entity.Meeting;
 
 @Stateless
 @LocalBean
-public class MeetingDaoImpl extends DaoBase implements MeetingDao {
+public class MeetingDaoImpl extends DaoBase<Meeting> implements MeetingDao {
 
 	public List<Meeting> findAll() {
 		EntityManager em = super.getEntityManager();
