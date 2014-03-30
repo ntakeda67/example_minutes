@@ -1,38 +1,72 @@
-var minutesControllers = angular.module('minutesControllers');
-
-minutesControllers.controller('MeetingListControl', ['$scope', '$http', 'Meeting', 'MeetingType', 
-	function MeetingListControl($scope, $http, Meeting, MeetingType) {
-		$scope.meetings = Meeting.query();
-		$scope.meetingTypes = MeetingType.query();
-		$scope.edittedMeeting = {};
-		$scope.doEdit = function(target){
-			$scope.edittedMeeting = angular.copy(target);
-			console.log()
+var minutesServices = angular.module('minutesServices');
+// 会議操作コントローラ間で状態を共有するサービス
+var meetingService = minutesServices.factory('MeetingStateService', ['$rootScope', 'Meeting',
+	function MeetingStateService($rootScope, Meeting){
+	
+		var list = [];
+		var editted = {};
+		var service = {
+			getList: function getList(forceRefresh){
+				if(forceRefresh){
+					return requestList();
+				}
+				return list;
+			},
+			setEditted: function(_editted){
+				editted = _editted;
+				$rootScope.$broadcast('RefreshedEdittedMeeting');
+			},
+			getEditted: function(){return editted;}
+		}
+		var requestList = function(){
+			list = Meeting.query();
+			$rootScope.$broadcast('RefreshedMeetingList');
+			return list;
 		}
 		
-		$scope.updateList = function(){
-			$scope.meetings = Meeting.query();
+		
+		return service;
+}]);
+var minutesControllers = angular.module('minutesControllers');
+
+meetingService.controller('MeetingListControl', ['$scope', '$http', 'Meeting', 'MeetingType', 'MeetingStateService', 
+	function MeetingListControl($scope, $http, Meeting, MeetingType, MeetingStateService) {
+		$scope.meetings = MeetingStateService.getList(true);
+		$scope.meetingTypes = MeetingType.query();
+		$scope.doEdit = function(target){
+			MeetingStateService.setEditted(angular.copy(target));
 		}
+		
+		$scope.$on('RefreshedEdittedMeeting', function(){
+			$scope.edittedMeeting = MeetingStateService.getEditted();
+		});
+		$scope.$on('RefreshedMeetingList', function(){
+			$scope.meetings = MeetingStateService.getList(false);
+		});
 	}
 ]);
 
-minutesControllers.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeting', 'MeetingType',
-	function ModifyMeetingControl($scope, $http, Meeting, MeetingType){
+meetingService.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeting', 'MeetingType','MeetingStateService',
+	function ModifyMeetingControl($scope, $http, Meeting, MeetingType, MeetingStateService){
 		$scope.doRegister = function(){
 			$http({
 				method: 'PUT',
 				url: '../rest/meetings',
-				data: $scope.edittedMeeting
+				data: MeetingStateService.getEditted()
 			}).success(function(data, status, headers, config){
-				$scope.edittedMeeting = {};
-				$scope.updateList();
+				MeetingStateService.setEditted({});
+				MeetingStateService.getList(true);
 			})
 				
 			
 		}
 		
+		$scope.$on('RefreshedEdittedMeeting', function(){
+			$scope.edittedMeeting = MeetingStateService.getEditted();
+		});
+		
 		$scope.doUpdate = function(){
-				$scope.edittedMeeting = {};
-				$scope.meetings = Meeting.query();
+			MeetingStateService.setEditted({});
+			$scope.meetings = MeetingStateService.getList(true);
 		}
 }]);
