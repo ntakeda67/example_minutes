@@ -6,7 +6,9 @@
     <class name="org.example.minutes.entity.MeetingForm" table="MEETING_FORM" schema="MINUTES">
         <id name="rid" type="big_decimal">
             <column name="RID" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="sequence">
+                <param name="sequence">MEETING_FORM_SEQ</param>
+            </generator>
         </id>
         <many-to-one name="meeting" class="org.example.minutes.entity.Meeting" fetch="select">
             <column name="MEETING_RID" precision="22" scale="0" not-null="true" />
