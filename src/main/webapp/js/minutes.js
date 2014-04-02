@@ -15,9 +15,16 @@ minutesApp.config(['$routeProvider',
         templateUrl: 'login.html',
         controller: 'LoginControl'
       }).
+      when('/menu', {
+        templateUrl: 'menu.html'
+      }).
       when('/meeting', {
         templateUrl: 'meeting-list.html',
         controller: 'MeetingListControl'
+      }).
+      when('/member', {
+        templateUrl: 'member.html',
+        controller: 'MemberListControl'
       }).
       when('/meeting/:rid', {
         templateUrl: 'meeting-detail.html',
@@ -39,6 +46,14 @@ minutesServices.factory('Meeting', ['$resource', '$http',
 minutesServices.factory('MeetingType', ['$resource', '$http', 
     function($resource){
 		return $resource('../rest/meetingTypes', {}, {
+			query: {method:'POST', isArray:true}
+	});
+}
+]);
+
+minutesServices.factory('Member', ['$resource', '$http', 
+    function($resource){
+		return $resource('../rest/member', {}, {
 			query: {method:'POST', isArray:true}
 	});
 }

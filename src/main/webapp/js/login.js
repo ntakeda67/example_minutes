@@ -14,7 +14,7 @@ minutesControllers.controller('LoginControl', ['$scope', '$http', '$filter', '$l
             	headers: { 'Content-Type': 'application/json; charset=UTF-8' },
             	data: parameter
             }).success(function(data, status, headers, config) {
-            	$location.path('/meeting')
+            	$location.path('/menu')
             }).error(function(data, status, headers, config) {
             	alert('login failed');
             });
