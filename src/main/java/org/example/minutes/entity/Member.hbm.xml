@@ -59,5 +59,11 @@
             </key>
             <one-to-many class="org.example.minutes.entity.MeetingMember" />
         </set>
+        <set name="memberSessions" table="MEMBER_SESSION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MEMBER_RID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="org.example.minutes.entity.MemberSession" />
+        </set>
     </class>
 </hibernate-mapping>

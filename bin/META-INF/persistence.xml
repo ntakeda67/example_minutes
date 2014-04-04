@@ -19,6 +19,7 @@
         <class>org.example.minutes.entity.MeetingMember</class>
         <class>org.example.minutes.entity.MeetingType</class>
         <class>org.example.minutes.entity.Member</class>
+        <class>org.example.minutes.entity.MemberSession</class>
         <class>org.example.minutes.entity.MemberType</class>
         <class>org.example.minutes.entity.Minutes</class>
         <properties>

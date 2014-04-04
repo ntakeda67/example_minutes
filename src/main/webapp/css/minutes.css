@@ -2,6 +2,8 @@
 /********************************************/
 /********             ‹¤’Ê           ********/
 /********************************************/
+html {
+}
 body {
     background-color: #E0F4BA;
     font-size: 80%;
@@ -37,11 +39,6 @@ h2 {
     padding-left: 20px;
     padding-top: 7px;
 }
-.logout-button {
-    margin-left: 605px;
-    margin-top: -2px;
-    position: absolute;
-}
 .body-area {
     background-color: #FFFFFF;
     margin-left: auto;
@@ -49,7 +46,7 @@ h2 {
     width: 1000px;
 }
 .body-area .logout-button {
-    margin-left: 340px;
+    margin-left: 640px;
     margin-top: -2px;
     position: absolute;
 }
@@ -77,6 +74,62 @@ h2 {
     font-size: 13px;
     height: 25px;
     width: 140px;
+}
+.noparagraph {
+    color: #FF0000;
+}
+.menu {
+    float:left;
+    width:195px;
+    height:400px;
+    margin-left:20px;
+    margin-top:20px;
+}
+.menu dt {
+    width:110px;
+    padding:2px;
+    margin-top: 0px;
+    font-weight:bold;
+    font-size:16px;
+    border-left:10px solid #B7DDF2;
+    color:#555555;
+}
+
+.menu dd {
+    margin-left:0px;
+}
+
+.menu ul {
+    list-style:none;
+    padding:0;
+    margin-left:20px;
+}
+
+.menu li {
+    list-style-type:none;
+    background:url(../images/menu_icon.png) no-repeat 0 3px;
+    padding-left:10px;
+    margin:5px 0;
+}
+
+.menu li a {
+    text-decoration: none;
+    font-size:14px;
+}
+
+.menu li a:link {
+    color:#555555;
+}
+
+.menu li a:visited {
+    color:#555555;
+}
+
+.menu li a:hover {
+    color:#748BD4;
+}
+.view-container {
+    float:left;
 }
 
 
