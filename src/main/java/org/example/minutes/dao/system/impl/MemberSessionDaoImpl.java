@@ -28,7 +28,7 @@ public class MemberSessionDaoImpl extends DaoBase<MemberSession> implements Memb
 		query.select(m).where(builder.equal(m.get("ticketId"), ticketId));
 
 		MemberSession memberSession = (MemberSession)findByQuery(query);
-		em.clear();
+
 		return memberSession;
 	}
 
@@ -39,7 +39,7 @@ public class MemberSessionDaoImpl extends DaoBase<MemberSession> implements Memb
 		query.select(m).where(builder.equal(m.get("ticketId"), ticketId), builder.greaterThan(m.<Date>get("expirationDate"), new Date()));
 
 		MemberSession memberSession = (MemberSession)findByQuery(query);
-		em.clear();
+
 		return memberSession;
 	}
 

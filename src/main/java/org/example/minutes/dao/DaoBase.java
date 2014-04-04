@@ -18,7 +18,7 @@ public class DaoBase<T extends EntityBase> {
 	@PersistenceContext(unitName = "meeting")
 	private EntityManager em;
 
-	public <T> Object findByQuery(CriteriaQuery<T> query) {
+	public Object findByQuery(CriteriaQuery<T> query) {
 
 		Object o = null;
 
