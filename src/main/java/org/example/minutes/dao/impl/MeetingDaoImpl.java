@@ -1,5 +1,6 @@
 package org.example.minutes.dao.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -29,21 +30,22 @@ public class MeetingDaoImpl extends DaoBase<Meeting> implements MeetingDao {
 		em.clear();
 		return meetingList;
 	}
-
-	public Meeting find(Long rid) {
+	
+	public Meeting findLock(BigDecimal rid){
 		EntityManager em = super.getEntityManager();
-		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Meeting> query = builder.createQuery(Meeting.class);
-		Root<Meeting> m = query.from(Meeting.class);
-		query.select(m).where(builder.equal(m.get("rid"), rid));
-		
-		Meeting meeting = (Meeting)findByQuery(query);
-		em.clear();
-		return meeting;
+		return em.find(Meeting.class, rid, super.lockMode);
+	}
+
+	public Meeting find(BigDecimal rid) {
+		EntityManager em = super.getEntityManager();
+		return em.find(Meeting.class, rid);
 	}
 
 	public void insert(Meeting entity) {
 		super.insert(entity);
 	}
-
+	
+	public void update(Meeting entity) {
+		super.update(entity);
+	}
 }

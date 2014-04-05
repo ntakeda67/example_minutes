@@ -16,10 +16,10 @@
         <property name="period" type="short">
             <column name="PERIOD" precision="4" scale="0" not-null="true" />
         </property>
-        <property name="startDate" type="date">
+        <property name="startDate" type="timestamp">
             <column name="START_DATE" length="7" not-null="true" />
         </property>
-        <property name="endDate" type="date">
+        <property name="endDate" type="timestamp">
             <column name="END_DATE" length="7" not-null="true" />
         </property>
         <property name="place" type="string">
@@ -46,13 +46,13 @@
         <property name="available" type="boolean">
             <column name="AVAILABLE" precision="1" scale="0" not-null="true" />
         </property>
-        <property name="createDate" type="date">
+        <property name="createDate" type="timestamp">
             <column name="CREATE_DATE" length="7" not-null="true" />
         </property>
         <property name="createUser" type="string">
             <column name="CREATE_USER" length="20" not-null="true" />
         </property>
-        <property name="updateDate" type="date">
+        <property name="updateDate" type="timestamp">
             <column name="UPDATE_DATE" length="7" not-null="true" />
         </property>
         <property name="updateUser" type="string">

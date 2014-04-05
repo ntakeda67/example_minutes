@@ -2,10 +2,9 @@
 
 <datasources>
   <datasource jndi-name="MinutesDS" enabled="true" use-java-context="true" pool-name="mintues">
-    <connection-url>jdbc:oracle:thin:@localhost:1521:xe</connection-url>
-
+    <connection-url>jdbc:oracle:thin:@192.168.211.176:1521:xe</connection-url>
     <driver>oracle-driver</driver>
-    <!--
+    <!-- 
     <driver-class>oracle.jdbc.driver.OracleDrive</driver-class>
      -->
     <security>

@@ -58,9 +58,7 @@ meetingService.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeting',
 			}).success(function(data, status, headers, config){
 				MeetingStateService.setEditted({});
 				MeetingStateService.getList(true);
-			})
-				
-			
+			});
 		}
 		
 		$scope.$on('RefreshedEdittedMeeting', function(){
@@ -68,7 +66,14 @@ meetingService.controller('ModifyMeetingControl', ['$scope', '$http', 'Meeting',
 		});
 		
 		$scope.doUpdate = function(){
-			MeetingStateService.setEditted({});
-			$scope.meetings = MeetingStateService.getList(true);
+			$http({
+				method: 'PUT',
+				url: '../rest/meetings',
+				data: MeetingStateService.getEditted()
+			}).success(function(data, status, headers, config){
+				MeetingStateService.setEditted({});
+				MeetingStateService.getList(true);
+			});
+			// FIXME 排他エラーのハンドリング
 		}
 }]);

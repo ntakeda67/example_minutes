@@ -10,7 +10,6 @@ import java.util.Date;
  */
 public class MeetingForm extends EntityBase implements java.io.Serializable {
 
-	private BigDecimal rid;
 	private Meeting meeting;
 	private MeetingType meetingType;
 
@@ -20,10 +19,9 @@ public class MeetingForm extends EntityBase implements java.io.Serializable {
 	public MeetingForm(BigDecimal rid, Meeting meeting,
 			MeetingType meetingType, boolean available, Date createDate,
 			String createUser, Date updateDate, String updateUser) {
-		this.rid = rid;
 		this.meeting = meeting;
 		this.meetingType = meetingType;
-		setBaseColumnsValue(available, createDate, createUser,
+		setBaseColumnsValue(rid, available, createDate, createUser,
 				updateDate, updateUser);
 	}
 
@@ -31,19 +29,10 @@ public class MeetingForm extends EntityBase implements java.io.Serializable {
 			MeetingType meetingType, boolean available, Date createDate,
 			String createUser, Date updateDate, String updateUser,
 			String comments) {
-		this.rid = rid;
 		this.meeting = meeting;
 		this.meetingType = meetingType;
-		setBaseColumnsValue(available, createDate, createUser,
+		setBaseColumnsValue(rid, available, createDate, createUser,
 				updateDate, updateUser, comments);
-	}
-
-	public BigDecimal getRid() {
-		return this.rid;
-	}
-
-	public void setRid(BigDecimal rid) {
-		this.rid = rid;
 	}
 
 	public Meeting getMeeting() {

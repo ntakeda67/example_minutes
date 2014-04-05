@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  */
 public class Meeting extends EntityBase implements java.io.Serializable {
 
-	private BigDecimal rid;
 	private String purpose;
 	private short period;
 	private Date startDate;
@@ -39,7 +38,6 @@ public class Meeting extends EntityBase implements java.io.Serializable {
 			Date startDate, Date endDate, String place, String topic,
 			String goal, Date registerDate, boolean available, Date createDate,
 			String createUser, Date updateDate, String updateUser) {
-		this.rid = rid;
 		this.purpose = purpose;
 		this.period = period;
 		this.startDate = startDate;
@@ -48,7 +46,7 @@ public class Meeting extends EntityBase implements java.io.Serializable {
 		this.topic = topic;
 		this.goal = goal;
 		this.registerDate = registerDate;
-		setBaseColumnsValue(available, createDate, createUser,
+		setBaseColumnsValue(rid, available, createDate, createUser,
 				updateDate, updateUser);
 	}
 
@@ -59,7 +57,6 @@ public class Meeting extends EntityBase implements java.io.Serializable {
 			Date createDate, String createUser, Date updateDate,
 			String updateUser, String comments, Set minuteses,
 			Set meetingMembers, Set meetingForms) {
-		this.rid = rid;
 		this.purpose = purpose;
 		this.period = period;
 		this.startDate = startDate;
@@ -74,18 +71,9 @@ public class Meeting extends EntityBase implements java.io.Serializable {
 		this.minuteses = minuteses;
 		this.meetingMembers = meetingMembers;
 		this.meetingForms = meetingForms;
-		setBaseColumnsValue(available, createDate, createUser,
+		setBaseColumnsValue(rid, available, createDate, createUser,
 				updateDate, updateUser, comments);
 	}
-
-	public BigDecimal getRid() {
-		return this.rid;
-	}
-
-	public void setRid(BigDecimal rid) {
-		this.rid = rid;
-	}
-
 	public String getPurpose() {
 		return this.purpose;
 	}

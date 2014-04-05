@@ -10,30 +10,30 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.example.minutes.dto.MeetingDetailDto;
-import org.example.minutes.service.MeetingService;
+import org.example.minutes.dto.MemberDetailDto;
+import org.example.minutes.service.MemberService;
 
-@Path("/meetings")
-public class MeetingFacade {
+@Path("/member")
+public class MemberFacade {
 	
 	@EJB
-	private MeetingService meetingService;
+	private MemberService memberService;
 	
 	@POST
 	@Consumes(MediaType.WILDCARD)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<MeetingDetailDto> inquireMeetings(){
-		return meetingService.findMeetingList();
+	public List<MemberDetailDto> inquireMembers(){
+		return memberService.findMemberList();
 	}
 	
 	@PUT
 	@Consumes(MediaType.WILDCARD)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void registgerMeeting(MeetingDetailDto dto){
+	public void registgerMember(MemberDetailDto dto){
 		if(dto.getRid() == null) {
-			meetingService.registerMeeting(dto);
+			memberService.registerMember(dto);
 		} else {
-			meetingService.modifyMeeting(dto);
+			memberService.modifyMember(dto);
 		}
 	}
 }
