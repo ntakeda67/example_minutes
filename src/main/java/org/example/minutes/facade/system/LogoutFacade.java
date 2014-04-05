@@ -7,7 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 
 import org.example.minutes.dto.AuthenticationDto;
-import org.example.minutes.entity.MemberSession;
 import org.example.minutes.service.system.LoginService;
 
 
@@ -21,10 +20,7 @@ public class LogoutFacade {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void doLogout(AuthenticationDto authenticationDto) {
 
-		MemberSession memberSession = loginService.findMemberSessionByTicketId(authenticationDto.getTicketId());
-		if (memberSession != null) {
-			loginService.deleteMemberSession(memberSession);
-		}
+		loginService.doLogout(authenticationDto.getTicketId());
 	}
 
 }

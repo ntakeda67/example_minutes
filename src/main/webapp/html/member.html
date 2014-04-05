@@ -1,0 +1,26 @@
+<form novalidate name="memberForm">
+<div>
+    <label for="memberList">メンバ一覧</label>
+    <ol id="memberList">
+        <li ng-repeat="member in members"><span ng-click="doEdit(member)">編集</a>{{member.loginId}}</li>
+    </ol>
+</div>
+<div ng-controller="ModifyMemberControl">
+    <input type="hidden" id="rid" ng-model="edittedMember.rid">
+    <input type="hidden" id="updateDate" ng-model="edittedMember.updateDate">
+    <ul>
+        <li>
+           <label for="surName" >姓: </label><input type="text" name="surName" ng-model="edittedMember.surName" required>
+        </li>
+        <li>
+           <label for="firstName" >名: </label><input type="text" name="firstName" ng-model="edittedMember.firstName" required>
+        </li>
+        <li>
+           <label for="mailAddress" >メールアドレス: </label><input type="text" name="mailAddress" ng-model="edittedMember.mailAddress" required>
+        </li>
+    </ul>
+    <button ng-click="doRegister()">新規登録</button>
+    <button ng-click="doUpdate()">更新</button>
+</div>
+</form>
+

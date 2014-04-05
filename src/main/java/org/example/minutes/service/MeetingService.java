@@ -11,4 +11,6 @@ public interface MeetingService {
 	List<MeetingDetailDto> findMeetingList();
 
 	void registerMeeting(MeetingDetailDto dto);
+
+	void modifyMeeting(MeetingDetailDto dto);
 }

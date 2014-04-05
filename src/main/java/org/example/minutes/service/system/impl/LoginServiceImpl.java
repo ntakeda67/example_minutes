@@ -49,15 +49,11 @@ public class LoginServiceImpl implements LoginService {
 		return memberSession;
 	}
 
-	public MemberSession findMemberSessionByTicketId(String ticketId) {
-		return memberSessionDao.findMemberSessionByTicketId(ticketId);
-	}
-
-	public MemberSession findMemberSessionByTicketIdOnlyIsValid(String ticketId) {
-		return memberSessionDao.findMemberSessionByTicketIdOnlyIsValid(ticketId);
-	}
-
-	public void deleteMemberSession(MemberSession memberSession) {
+	public void doLogout(String ticketId) {
+		MemberSession memberSession = memberSessionDao.findMemberSessionByTicketId(ticketId);
+		if(memberSession == null){
+			return;
+		}
 		memberSessionDao.delete(memberSession);
 	}
 

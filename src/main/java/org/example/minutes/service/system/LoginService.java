@@ -12,9 +12,5 @@ public interface LoginService {
 
 	MemberSession registerMemberSession(Member member);
 
-	MemberSession findMemberSessionByTicketId(String ticketId);
-
-	MemberSession findMemberSessionByTicketIdOnlyIsValid(String ticketId);
-
-	void deleteMemberSession(MemberSession memberSession);
+	void doLogout(String ticketId);
 }
