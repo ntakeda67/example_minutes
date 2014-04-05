@@ -1,9 +1,13 @@
 <form novalidate name="loginForm" class="login-form">
     <div class="login-title">ログイン</div>
-    <div class="noparagraph login-form-label">ログインID : <input type="text" name="loginId" class="login-form-field" ng-model="loginId" required></div>
-    <div ng-show="loginForm.loginId.$error.required" class="noparagraph"></div>
+    <div class="login-form-label">ログインID : <input type="text" name="loginId" class="login-form-field" ng-model="loginId" ngMaxlength="16" required></div>
+    <div ng-show="loginForm.loginId.$dirty && loginForm.loginId.$invalid">
+        <span ng-show="loginForm.loginId.$error.required" class="noparagraph">*ログインIDを入力してください</span>
+    </div>
     <br/>
-    <div class="noparagraph login-form-label">パスワード : <input type="password" name="password" class="login-form-field" ng-model="password" required></div>
-    <div ng-show="loginForm.password.$error.required" class="noparagraph"></div>
-    <div class="login-button"><button class="button-size-small" ng-click="doLogin()">ログイン</button></div>
+    <div class="login-form-label">パスワード : <input type="password" name="password" class="login-form-field" ng-model="password" ngMaxlength="16" required></div>
+    <div ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+        <span ng-show="loginForm.password.$error.required" class="noparagraph">*パスワードを入力してください</span>
+    </div>
+    <div class="login-button"><button class="button-size-small" ng-click="doLogin()" ng-disabled="loginForm.loginId.$invalid || loginForm.password.$invalid">ログイン</button></div>
 </form>

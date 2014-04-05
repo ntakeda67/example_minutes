@@ -12,15 +12,32 @@
         <script src="../js/meeting.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/minutes.css">
     </head>
-    <body>
+    <body ng-controller=MainControl>
         <div class="body-area shadow">
             <div id="header-area">
                 <div class="header">
                     <span class="header-title">開催通知/議事録管理システム</span>
+                    <span class="logout-button" ng-show="isLogined()">
+                        <form novalidate name="logoutForm">
+                            <button class="button-size-small" ng-click="doLogout()">ログアウト</button>
+                        </form>
+                    </span>
                 </div>
             </div>
 
-            <div class="view-container">
+            <div class="menu" ng-show="isLogined()">
+                <dl>
+                    <dt>開催通知管理</dt>
+                    <dd>
+                        <ul>
+                            <li><a href="<%= request.getContextPath() %>/meeting">リスト</a></li>
+                            <li><a href="<%= request.getContextPath() %>/login">ログイン</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+
+            <div id="view-container" ng-class="view-container" class="view-container: isLogined();">
                 <div ng-view class="view-frame"></div>
             </div>
 

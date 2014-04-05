@@ -31,7 +31,7 @@ public class DaoBase<T extends EntityBase> {
 		return o;
 
 	}
-	
+
 	public List<?> findListByQuery(CriteriaQuery<?> query) {
 		List<?> o = null;
 
@@ -39,7 +39,26 @@ public class DaoBase<T extends EntityBase> {
 
 		return o;
 	}
-	
+
+	public void insert(T entity) {
+		entity.setCreateDate(new Date());
+		entity.setCreateUser("SYSTEM");
+		entity.setUpdateDate(new Date());
+		entity.setUpdateUser("SYSTEM");
+		entity.setAvailable(true);
+		em.persist(entity);
+	}
+
+	public void update(T entity) {
+		entity.setUpdateDate(new Date());
+		entity.setUpdateUser("SYSTEM");
+		em.merge(entity);
+	}
+
+	public void delete(T entity) {
+		em.remove(entity);
+	}
+
 	protected EntityManager getEntityManager(){
 		return em;
 	}
