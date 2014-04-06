@@ -43,3 +43,39 @@ minutesServices.factory('MeetingType', ['$resource', '$http',
 	});
 }
 ]);
+
+
+
+var minutesControllers = angular.module('minutesControllers');
+
+minutesControllers.controller('MainControl', ['$scope', '$http', '$filter', '$location', 
+    function($scope, $http, $filter, $location){
+        $scope.isLogined = function() {
+            if (window.sessionStorage.getItem('ticketId') != null) {
+                return true;
+            }
+            return false;
+        }
+
+        $scope.doLogout = function() {
+            var authenticationDto = {};
+            authenticationDto.ticketId = window.sessionStorage.getItem('ticketId');
+            
+            var parameter = $filter('json')(authenticationDto);
+            
+            $http({
+                method : 'POST',
+                url : '/minutes/rest/doLogout',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: parameter
+            }).success(function(data, status, headers, config) {
+                window.sessionStorage.removeItem('ticketId');
+                $location.path('/login');
+            }).error(function(data, status, headers, config) {
+                window.sessionStorage.removeItem('ticketId');
+                $location.path('/login');
+            });
+        }
+
+    }
+]);

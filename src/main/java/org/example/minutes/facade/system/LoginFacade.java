@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.example.minutes.dto.LoginDto;
 import org.example.minutes.entity.Member;
+import org.example.minutes.entity.MemberSession;
 import org.example.minutes.service.system.LoginService;
 
 
@@ -16,17 +17,20 @@ public class LoginFacade {
 
 	@EJB
 	private LoginService loginService;
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String doLogin(LoginDto loginDto) {
-	
+
 		Member member = loginService.findMemberByLoginIdAndPassword(loginDto.getLoginId(), loginDto.getPassword());
-		
-		
-		return "Hello, " + member.getSurName();
+		if (member == null) {
+			//TODO エラー　エラークラス、エラーメッセージ定義クラスなど共通実装後
+			return new RuntimeException("ログインIDまたはパスワードが不正です").getMessage();
+		}
+
+		MemberSession memberSession = loginService.registerMemberSession(member);
+
+		return memberSession.getTicketId();
 	}
-	
-	
-	
+
 }
