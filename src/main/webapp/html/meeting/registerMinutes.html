@@ -9,22 +9,58 @@ and open the template in the editor.
         <title>議事録登録</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-        <script src="../js/login.js"></script>
-        <link rel="stylesheet" type="text/css" href="../css/meeting.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+        <script src="../../js/meeting/registerMinutes.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/minutes.css">
     </head>
     <body>
-        <div id="container" ng-app>
+        <div id="container" ng-app="registerMinutesApp">
           <form novalidate name="registerMinutesForm">
-            <div ng-controller="minutesControl">
-              <div class="noparagraph">ログインID : <input type="text" name="loginId" ng-model="loginId" required></div>
-              <div ng-show="loginForm.loginId.$error.required" class="noparagraph">*</div>
-              <br />
-              <div class="noparagraph">パスワード : <input type="password" name="password" ng-model="password" required></div>
-              <div ng-show="loginForm.password.$error.required" class="noparagraph">*</div>
-              <button ng-click="doLogin()">Login</button>
+            <div ng-controller="registerMinutesControl">
+              <ol>
+                <li>
+                  <label for="purpose">目的:</label>
+                  <textarea name="purpose" ng-model="purpose" ng-maxlength="2000" required></textarea>
+                  <span ng-show="registerMinutesForm.purpose.$error.required" class="noparagraph">*</span>
+                </li>
+                <li>
+                  <label for="startDate">開始日時:</label>
+                  <input type="datetime-local" id="startDate" ng-model="startDate">
+                </li>
+                <li>
+                  <label for="startDate">終了日時:</label>
+                  <input type="datetime-local" id="endDate" ng-model="endDate">
+                </li>
+                <li>
+                    <label for="place">場所:</label>
+                    <input type="text" id="place" maxlength="100" ng-model="place">
+                </li>
+                <li>
+                  <label for="purpose">決定事項:</label>
+                  <textarea name="decision" ng-model="decision" ng-maxlength="2000" required></textarea>
+                  <span ng-show="registerMinutesForm.decision.$error.required" class="noparagraph">*</span>
+                </li>
+                <li>
+                  <label for="todo">TODO:</label>
+                  <textarea name="todo" ng-model="todo" ng-maxlength="2000" required></textarea>
+                  <span ng-show="registerMinutesForm.todo.$error.required" class="noparagraph">*</span>
+                </li>
+                <li>
+                  <label for="nextStartDate">次回開催日時:</label>
+                  <input type="datetime-local" id="nextStartDate" ng-model="nextStartDate">
+                </li>
+                <li>
+                  <label for="nextPlace">次回開催場所:</label>
+                  <input type="text" id="nextPlace" maxlength="100" ng-model="nextPlace">
+                </li>
+              </ol>
+              <button ng-click="onConfirm()">確認</button>
+              <button ng-click="onCancel()">キャンセル</button>
             </div>
           </form>
         </div>
+        
     </body>
 </html>

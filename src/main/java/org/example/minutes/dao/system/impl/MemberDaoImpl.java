@@ -16,9 +16,6 @@ import org.example.minutes.entity.Member;
 @LocalBean
 public class MemberDaoImpl extends DaoBase implements MemberDao  {
 
-	@PersistenceContext(unitName = "meeting")
-	private EntityManager em;
-	
 	public Member findMemberByLoginIdAndPassword(String loginId, String password) {
 		
 		CriteriaBuilder builder = em.getCriteriaBuilder();

@@ -18,9 +18,6 @@ import org.example.minutes.entity.MemberSession;
 @LocalBean
 public class MemberSessionDaoImpl extends DaoBase<MemberSession> implements MemberSessionDao {
 
-	@PersistenceContext(unitName = "meeting")
-	private EntityManager em;
-
 	public MemberSession findMemberSessionByTicketId(String ticketId) {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<MemberSession> query = builder.createQuery(MemberSession.class);

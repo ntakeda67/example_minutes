@@ -1,8 +1,9 @@
-package org.example.minutes.service.meeting;
+package org.example.minutes.service.meeting.impl;
 
 import java.util.List;
 
 import org.example.minutes.dto.meeting.SearchMeetingResultDto;
+import org.example.minutes.service.meeting.SearchMeetingService;
 
 public class SearchMeetingServiceImpl implements SearchMeetingService {
 

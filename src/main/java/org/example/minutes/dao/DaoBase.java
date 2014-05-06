@@ -16,7 +16,7 @@ import org.example.minutes.entity.EntityBase;
 @LocalBean
 public class DaoBase<T extends EntityBase> {
 	@PersistenceContext(unitName = "meeting")
-	private EntityManager em;
+	protected EntityManager em;
 
 	public Object findByQuery(CriteriaQuery<T> query) {
 

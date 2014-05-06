@@ -1,0 +1,21 @@
+
+<div class="modal-header">
+	<button type="button" class="close" ng-click="$dismiss()"
+		aria-hidden="true">×</button>
+</div>
+以下の内容で登録してよろしいですか？
+<div class="modal-body">
+  <ul>
+      <li>目的:{{purpose}}</li>
+      <li>開始日時:{{startDate}}</li>
+      <li>終了日時:{{endDate}}</li>
+      <li>場所:{{place}}</li>
+      <li>決定事項:{{decision}}</li>
+      <li>ToDo:{{todo}}</li>
+      <li>次回開催日時:{{nextStartDate}}</li>
+      <li>次回開催場所:{{nextPlace}}</li>
+  </ul>
+</div>
+<div class="modal-footer">
+	<button class="btn" ng-click="onRegister()">実行</button>
+</div>

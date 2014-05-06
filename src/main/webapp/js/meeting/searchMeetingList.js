@@ -8,8 +8,6 @@ var searchMeetingListApp = angular.module('searchMeetingListApp', []);
 
 searchMeetingListApp.controller('searchMeetingControl',  ['$scope', '$http', '$filter',function($scope, $http, $filter) {
 	
-	alert("!!");
-	
 	// 配列
     var searchMeetingListDto = {};
     searchMeetingListDto.loginId = 'teramoto';
